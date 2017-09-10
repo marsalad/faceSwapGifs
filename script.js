@@ -1,4 +1,6 @@
-file = ""
+var file = ""
+var gif = ""
+var htmls = ["","","","","",""]
 
 function search() {
 	text = document.getElementById("search-bar").value;
@@ -6,10 +8,10 @@ function search() {
 	var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" 
 		+ text + "&api_key=4a018e825a5d46a295514306536ef93b&limit=6",
 			function(response) {
-				console.log(response)
 				$(response.data).each(function(index,value) {
 					document.getElementById("gif-" + (index+1)).innerHTML = "<img src='" + response.data[index].images.fixed_height.url + "'>"
 					document.getElementById("gif-" + (index+1)).firstChild.style.border = "0px solid red"
+					htmls[index] = (response.data[index].images.original.url)
 				})
 			})
 }
@@ -19,6 +21,7 @@ function selectGif(caller) {
 		document.getElementById("gif-" + (i+1)).firstChild.style.border = "0px solid red";
 	}
 	caller.firstChild.style.border = "3px solid red";
+	gif = htmls[caller.id.substring(4,5)-1];
 }
 
 function previewFile() {
@@ -43,6 +46,17 @@ function previewFile() {
     }
 }
 
-function faceswap() {
+function swapFaces() {
+    $.ajax({
+        type: "POST",
+        url: "/swapFaces",
+        contentType:"application/json; charset=utf-8",
+        data: JSON.stringify({ gif: gif, img: file.name }),
+        processData: false,
+        success: function(data) {
+        	console.log(data);
+        	window.open("img/" + data + ".gif", "_blank")
+        }
+    });
 
 }
