@@ -1,7 +1,5 @@
 from faceswap import *
-import os
-import imageio
-import shutil
+import os, imageio, shutil
 from PIL import Image
 
 # get face landmarks
@@ -44,5 +42,6 @@ for frame in range(frameNum):
 frames = []
 for frame in range(frameNum):
     frames.append(imageio.imread("swap/%s.jpg" % frame))
-imageio.mimsave("img/faceswap.gif", frames, fps=20)
-shutil.rmtree("swap");
+imageio.mimsave("img/" + sys.argv[3] + ".gif", frames, fps=20)
+shutil.rmtree("swap")
+os.remove("img/tmp.gif")
