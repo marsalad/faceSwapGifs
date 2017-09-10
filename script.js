@@ -54,9 +54,7 @@ function swapFaces() {
         data: JSON.stringify({ gif: gif, img: file.name }),
         processData: false,
         success: function(data) {
-        	console.log(data);
-        	window.open("img/" + data + ".gif", "_blank")
+        	window.open("img/" + data + ".gif", "_blank");
         }
     });
-
 }
