@@ -11,7 +11,7 @@ function search() {
 				$(response.data).each(function(index,value) {
 					document.getElementById("gif-" + (index+1)).innerHTML = "<img src='" + response.data[index].images.fixed_height.url + "'>"
 					document.getElementById("gif-" + (index+1)).firstChild.style.border = "0px solid red"
-					htmls[index] = (response.data[index].images.original.url)
+					htmls[index] = (response.data[index].images.downsized_medium.url)
 				})
 			})
 }
