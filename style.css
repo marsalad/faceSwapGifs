@@ -65,10 +65,11 @@ body {
 	position: relative;
 	margin: auto;
 	width: 70vh;
+	height: 9vh;
 }
 
 input {
-    width: inherit;
+    width: 68.5vh;
     padding: 0.7vh;
     line-height: 3vh;
     font-size: 3vh;
@@ -77,7 +78,7 @@ input {
 .search-btn {
 	position: absolute;
 	top: 0px;
-	right: 0px;
+	right: 1.4vh;
 	font-size: 2.5vh;
 	line-height: 5vh;
 }
@@ -85,4 +86,11 @@ input {
 .fa {
 	color: black;
 	cursor: pointer;
+}
+
+#giphy {
+	height: 2.5vh;
+	margin-left: 0.5vh;
+	margin-top: 0.75vh;
+	float: left;
 }
