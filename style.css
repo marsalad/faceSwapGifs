@@ -9,7 +9,7 @@ body {
 
 #wrapper {
 	text-align: center;
-	width: 151vh;
+	width: 125vh;
 	margin: auto;
 }
 
@@ -22,23 +22,24 @@ body {
 }
 
 .io-section {
-	height: 40vh;
-	margin: 6vh 0vh;
+	height: 30vh;
+	width: 121vh;
+	margin: 6vh auto;
 }
 
 .io-container {
-	width: 40vh;
-	height: 40vh;
+	width: 30vh;
+	height: 30vh;
 	border: 0.5vh solid white;
 	border-radius: 0.5vh;
 	float: left;
 }
 
 .io-container img {
-	max-width: 40vh;
-	max-height: 40vh;
+	max-width: 30vh;
+	max-height: 30vh;
 	margin: auto;
-	line-height: 40vh;
+	line-height: 30vh;
 	font-size: 3vh;
 	color: white;
 }
@@ -53,23 +54,32 @@ body {
 
 .math-symbol {
 	margin: 0vh 4.5vh;
-	line-height: 40vh;
+	line-height: 30vh;
 	font-size: 5vh;
 	width: 5vh;
 	float: left;
 	color: white;
 }
 
-.search-section {
-	margin: 3vh;
+.search-bar {
+	position: relative;
+	margin: auto;
+	width: 70vh;
 }
 
-input[type=text] {
-    width: 50%;
-    padding: 10px;
-    font-size: 300%;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+input {
+    width: inherit;
+    padding: 0.7vh;
+    line-height: 3vh;
+    font-size: 3vh;
+}
+
+.search-btn {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	font-size: 2.5vh;
+	line-height: 5vh;
 }
 
 .fa {
