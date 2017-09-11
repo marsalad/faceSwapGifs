@@ -44,12 +44,9 @@ body {
 	color: white;
 }
 
-#input-img:hover {
+#input-img img:hover, #output-gif img:hover, .fa:hover {
 	cursor: pointer;
-}
-
-#output-gif:hover {
-	cursor: pointer;
+	color: gray;
 }
 
 .math-symbol {
@@ -69,8 +66,9 @@ body {
 }
 
 input {
-    width: 68.5vh;
+    width: 68vh;
     padding: 0.7vh;
+    padding-left: 1vh;
     line-height: 3vh;
     font-size: 3vh;
 }
@@ -81,11 +79,6 @@ input {
 	right: 1.4vh;
 	font-size: 2.5vh;
 	line-height: 5vh;
-}
-
-.fa {
-	color: black;
-	cursor: pointer;
 }
 
 #giphy {
