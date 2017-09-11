@@ -2,9 +2,9 @@ var file = ""
 var gif = ""
 var htmls = ["","","","","",""]
 
-$(document).ready(function(){
-    $('#search-bar').keypress(function(e){
-        if(e.keyCode==13) {
+$(document).ready(function() {
+    $('#search-bar').keypress(function(e) {
+        if(e.keyCode == 13) {
             search();
         }
     });

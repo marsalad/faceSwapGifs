@@ -9,7 +9,7 @@ body {
 
 #wrapper {
 	text-align: center;
-	width: 150vh;
+	width: 151vh;
 	margin: auto;
 }
 
@@ -29,8 +29,8 @@ body {
 .io-container {
 	width: 40vh;
 	height: 40vh;
-	border: 2.5px solid white;
-	border-radius: 3px;
+	border: 0.5vh solid white;
+	border-radius: 0.5vh;
 	float: left;
 }
 
