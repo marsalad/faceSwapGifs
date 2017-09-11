@@ -2,6 +2,14 @@ var file = ""
 var gif = ""
 var htmls = ["","","","","",""]
 
+$(document).ready(function(){
+    $('#search-bar').keypress(function(e){
+        if(e.keyCode==13) {
+            search();
+        }
+    });
+});
+
 function search() {
 	text = document.getElementById("search-bar").value;
 	text = text.replace(/\s/g, "+");
