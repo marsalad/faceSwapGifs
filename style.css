@@ -67,11 +67,11 @@ body {
 }
 
 input {
-    width: 68vh;
-    padding: 0.7vh;
-    padding-left: 1vh;
-    line-height: 3vh;
-    font-size: 3vh;
+	width: 68vh;
+	padding: 0.7vh;
+	padding-left: 1vh;
+	line-height: 3vh;
+	font-size: 3vh;
 }
 
 .search-btn {
