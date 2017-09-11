@@ -2,41 +2,36 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta charset="UTF-8">
-		<title>GIPHY Face Swap</title>
+		<title>FaceSwap GIFs</title>
 	</head>
 	<body>
 		<div id="wrapper">
-		  <div class="search">
-	      <input type="text" id="search-bar" placeholder="Search GIFs...">
-	      <button type="submit" class="search-btn" onclick="search()">
-	        <i class="fa fa-4x fa-search"></i>
-	      </button>
-		  </div>
-		  <div class="gif-grid">
-		   	<div class="gif-container" id="gif-1" onclick="selectGif(this)"></div>
-		   	<div class="gif-container" id="gif-2" onclick="selectGif(this)"></div>
-		   	<div class="gif-container" id="gif-3" onclick="selectGif(this)"></div>
-		   	<div class="gif-container" id="gif-4" onclick="selectGif(this)"></div>
-		   	<div class="gif-container" id="gif-5" onclick="selectGif(this)"></div>
-		   	<div class="gif-container" id="gif-6" onclick="selectGif(this)"></div>
-		  </div>
-		  <div class="content">
-		  	<div class="text">
-		  		<p>
-		  			Search for a GIF and select the one you would like to face swap with!<br>
-		  			Upload your JPEG below and watch the magic happen!
-		  		</p>
-		  	</div>
-		  	<input type="file" onchange="previewFile()"><br>
-		  	<div class="preview-cont">
-  				<img src="" alt="" id="preview">
-  			</div>
-  			<div class="merge">
-  				<button type="button" onclick="swapFaces()">FACESWAP!!!</button>
-  			</div>
-		  </div>
+			<div class="title">FaceSwap GIFs</div>
+			<div class="io-section">
+				<div class="io-container" id="input-gif">
+					<img src="" alt="Select a GIF Below">
+				</div>
+				<div class="math-symbol">+</div>
+				<div class="io-container" id="input-img">
+					<img src="" alt="Upload a Selfie">
+				</div>
+				<div class="math-symbol">=</div>
+				<div class="io-container" id="output-gif">
+					<img src="" alt="FaceSwap!">
+				</div>
+			</div>
+			<div class="search-section">
+				<div class="search-bar">
+					<input type="text" id="search-bar" placeholder="Search GIFs...">
+					<button type="submit" class="search-btn" onclick="search()">
+					  <i class="fa fa-4x fa-search"></i>
+					</button>
+				</div>
+				<div class="search-results"></div>
+			</div>
 		</div>
 		<script src="script.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
