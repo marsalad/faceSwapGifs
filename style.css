@@ -1,3 +1,7 @@
+/**********************/
+/* GENERAL PAGE SETUP */
+/**********************/
+
 * {
 	padding: 0;
 	margin: 0;
@@ -22,22 +26,24 @@ body {
 	margin: 3vh;
 }
 
+/*********************/
+/* I/O IMAGE DISPLAY */
+/*********************/
+
 .io-section {
 	height: 30vh;
 	width: 121vh;
 	margin: 6vh auto;
 }
 
-.io-container {
+.io-container, .gif-container {
 	width: 30vh;
 	height: 30vh;
-	border: 0.5vh solid white;
-	border-radius: 0.5vh;
 	float: left;
 	position: relative;
 }
 
-.io-container img {
+.io-container img, .gif-container img {
 	max-height: 29.95vh;  
 	max-width: 29.95vh; 
 	position: absolute;  
@@ -51,10 +57,9 @@ body {
 	color: white;
 }
 
-.vdisplay-help {
-		display: inline-block;
-		height: 30vh;
-		vertical-align: middle;
+.io-container {
+	border: 0.5vh solid white;
+	border-radius: 0.5vh;
 }
 
 #input-img img:hover, #output-gif img:hover, .fa:hover {
@@ -70,6 +75,10 @@ body {
 	float: left;
 	color: white;
 }
+
+/*********************/
+/* GIF SEARCH ENGINE */
+/*********************/
 
 .search-bar {
 	position: relative;
@@ -107,13 +116,9 @@ input {
 }
 
 .gif-container {
-	width: 30vh;
-	float: left;
 	margin: 0.5vh;
 }
 
 .gif-container img {
-	max-height: 30vh;
-	max-width: 30vh;
 	cursor: pointer;
 }

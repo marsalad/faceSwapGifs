@@ -8,6 +8,16 @@ $(document).ready(function() {
 			search();
 		}
 	});
+	var xhr = $.get("http://api.giphy.com/v1/gifs/trending?"
+		+ "api_key=4a018e825a5d46a295514306536ef93b&limit=4",
+		function(response) {
+			$(response.data).each(function(index,value) {
+				document.getElementById("search-results").children[index].innerHTML = 
+					"<img src='" + response.data[index].images.original.url 
+					+ "' onclick='selectGif(this)'>"
+				htmls[index] = (response.data[index].images.original.url)
+			})
+		})
 });
 
 function search() {
@@ -15,19 +25,19 @@ function search() {
 	text = text.replace(/\s/g, "+");
 	var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" 
 		+ text + "&api_key=4a018e825a5d46a295514306536ef93b&limit=4",
-			function(response) {
-				$(response.data).each(function(index,value) {
-					document.getElementById("search-results").children[index].innerHTML = 
-						"<img src='" + response.data[index].images.downsized_medium.url 
-						+ "' onclick='selectGif(this)'>"
-					htmls[index] = (response.data[index].images.downsized_medium.url)
-				})
+		function(response) {
+			$(response.data).each(function(index,value) {
+				document.getElementById("search-results").children[index].innerHTML = 
+					"<img src='" + response.data[index].images.original.url 
+					+ "' onclick='selectGif(this)'>"
+				htmls[index] = (response.data[index].images.original.url)
 			})
+		})
 }
 
 function selectGif(caller) {
 	gif = htmls[caller.parentNode.id.substring(4,5)-1];
-	document.getElementById("input-gif").children[1].src = gif;
+	document.getElementById("input-gif").children[0].src = gif;
 }
 
 function previewFile() {
