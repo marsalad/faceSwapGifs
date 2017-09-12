@@ -12,6 +12,7 @@
 			<div class="title">FaceSwap GIFs</div>
 			<div class="io-section">
 				<div class="io-container" id="input-gif">
+					<span class="vdisplay-help"></span>
 					<img src="" alt="Select a GIF Below">
 				</div>
 				<div class="math-symbol">+</div>
@@ -28,7 +29,12 @@
 				<div class="search-btn" onclick="search()"><i class="fa fa-search"></i></div>
 				<img id="giphy" src="assets/giphy.png">
 			</div>
-			<div class="search-results"></div>
+			<div id="search-results">
+				<div class="gif-container" id="gif-1"></div>
+				<div class="gif-container" id="gif-2"></div>
+				<div class="gif-container" id="gif-3"></div>
+				<div class="gif-container" id="gif-4"></div>
+			</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="script.js"></script>

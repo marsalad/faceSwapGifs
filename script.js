@@ -1,6 +1,6 @@
 var file = ""
 var gif = ""
-var htmls = ["","","","","",""]
+var htmls = ["","","",""]
 
 $(document).ready(function() {
 	$('#search-bar').keypress(function(e) {
@@ -14,22 +14,20 @@ function search() {
 	text = document.getElementById("search-bar").value;
 	text = text.replace(/\s/g, "+");
 	var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" 
-		+ text + "&api_key=4a018e825a5d46a295514306536ef93b&limit=6",
+		+ text + "&api_key=4a018e825a5d46a295514306536ef93b&limit=4",
 			function(response) {
 				$(response.data).each(function(index,value) {
-					document.getElementById("gif-" + (index+1)).innerHTML = "<img src='" + response.data[index].images.fixed_height.url + "'>"
-					document.getElementById("gif-" + (index+1)).firstChild.style.border = "0px solid red"
+					document.getElementById("search-results").children[index].innerHTML = 
+						"<img src='" + response.data[index].images.downsized_medium.url 
+						+ "' onclick='selectGif(this)'>"
 					htmls[index] = (response.data[index].images.downsized_medium.url)
 				})
 			})
 }
 
 function selectGif(caller) {
-	for (i = 0; i < 6; i++) {
-		document.getElementById("gif-" + (i+1)).firstChild.style.border = "0px solid red";
-	}
-	caller.firstChild.style.border = "3px solid red";
-	gif = htmls[caller.id.substring(4,5)-1];
+	gif = htmls[caller.parentNode.id.substring(4,5)-1];
+	document.getElementById("input-gif").children[1].src = gif;
 }
 
 function previewFile() {

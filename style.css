@@ -34,15 +34,27 @@ body {
 	border: 0.5vh solid white;
 	border-radius: 0.5vh;
 	float: left;
+	position: relative;
 }
 
 .io-container img {
-	max-width: 30vh;
-	max-height: 30vh;
+	max-height: 29.95vh;  
+	max-width: 29.95vh; 
+	position: absolute;  
+	top: 0;  
+	bottom: 0;  
+	left: 0;  
+	right: 0;  
 	margin: auto;
 	line-height: 30vh;
 	font-size: 3vh;
 	color: white;
+}
+
+.vdisplay-help {
+		display: inline-block;
+		height: 30vh;
+		vertical-align: middle;
 }
 
 #input-img img:hover, #output-gif img:hover, .fa:hover {
@@ -87,4 +99,21 @@ input {
 	margin-left: 0.5vh;
 	margin-top: 0.75vh;
 	float: left;
+}
+
+#search-results {
+	height: 30vh;
+	margin: 2vh 0vh;
+}
+
+.gif-container {
+	width: 30vh;
+	float: left;
+	margin: 0.5vh;
+}
+
+.gif-container img {
+	max-height: 30vh;
+	max-width: 30vh;
+	cursor: pointer;
 }
