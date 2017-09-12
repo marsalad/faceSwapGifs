@@ -87,7 +87,7 @@ body {
 	height: 9vh;
 }
 
-input {
+.search-bar input {
 	width: 68vh;
 	padding: 0.7vh;
 	padding-left: 1vh;

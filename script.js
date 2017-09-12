@@ -1,15 +1,16 @@
 var file = ""
 var gif = ""
 var htmls = ["","","",""]
+var giphy_key = '{{ env('GIPHY_KEY') }}';
 
 $(document).ready(function() {
-	$('#search-bar').keypress(function(e) {
+	$("#search-bar").keypress(function(e) {
 		if(e.keyCode == 13) {
 			search();
 		}
 	});
 	var xhr = $.get("https://api.giphy.com/v1/gifs/trending?"
-		+ "api_key=4a018e825a5d46a295514306536ef93b&limit=4",
+		+ "api_key=" + giphy_key + "&limit=4",
 		function(response) {
 			$(response.data).each(function(index,value) {
 				document.getElementById("search-results").children[index].innerHTML = 
@@ -17,14 +18,18 @@ $(document).ready(function() {
 					+ "' onclick='selectGif(this)'>"
 				htmls[index] = (response.data[index].images.original.url)
 			})
-		})
+		});
+});
+
+$("input[type='image']").click(function() {
+    $("input[id='my_file']").click();
 });
 
 function search() {
 	text = document.getElementById("search-bar").value;
 	text = text.replace(/\s/g, "+");
 	var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" 
-		+ text + "&api_key=4a018e825a5d46a295514306536ef93b&limit=4",
+		+ text + "&api_key=" + giphy_key + "&limit=4",
 		function(response) {
 			$(response.data).each(function(index,value) {
 				document.getElementById("search-results").children[index].innerHTML = 
