@@ -1,20 +1,10 @@
 var file = ""                            // url of uploaded file
 var gif = ""                             // url of selected GIF
 var htmls = ["","","",""]                // url of displayed GIFs
-var giphyKey = '{{ env('GIPHY_KEY') }}'; // API Key for access to GIPHY search
 
 // On load, display 4 trending GIFs
 $(document).ready(function() {
-	var xhr = $.get("https://api.giphy.com/v1/gifs/trending?"
-		+ "api_key=" + giphyKey + "&limit=4",
-		function(response) {
-			$(response.data).each(function(index,value) {
-				document.getElementById("search-results").children[index].innerHTML = 
-					"<img src='" + response.data[index].images.original.url 
-					+ "' onclick='selectGif(this)'>"
-				htmls[index] = (response.data[index].images.original.url)
-			})
-		});
+	getGifs("");
 });
 
 // Run search when user presses enter
@@ -24,20 +14,32 @@ $("#search-bar").keypress(function(e) {
 	}
 });
 
+// update GIFs per user specified search terms, default is trending
+function getGifs(query) {
+	$.ajax({
+		type: "POST",
+		url: "/searchGifs",
+		contentType:"application/json; charset=utf-8",
+		data: JSON.stringify({ query: query }),
+		processData: false,
+		success: function(data) {
+			json = JSON.parse(data).data;
+			for (i = 0; i < json.length; i++) {
+				link = json[i].images.original.url
+				document.getElementById(
+					"search-results").children[i].innerHTML =
+					"<img src='" + link + "' onclick='selectGif(this)'>";
+				htmls[i] = link
+			}
+		}
+	});
+}
+
 // Pull top 4 GIFs based on search terms
 function search() {
 	text = document.getElementById("search-bar").value;
 	text = text.replace(/\s/g, "+");
-	var xhr = $.get("https://api.giphy.com/v1/gifs/search?q=" 
-		+ text + "&api_key=" + giphyKey + "&limit=4",
-		function(response) {
-			$(response.data).each(function(index,value) {
-				document.getElementById("search-results").children[index].innerHTML = 
-					"<img src='" + response.data[index].images.original.url 
-					+ "' onclick='selectGif(this)'>"
-				htmls[index] = (response.data[index].images.original.url)
-			})
-		})
+	getGifs(text);
 }
 
 // User selects the GIF to faceswap
