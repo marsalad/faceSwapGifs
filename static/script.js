@@ -5,14 +5,19 @@ var htmls = ["","","",""] // url of displayed GIFs
 // On load, display 4 trending GIFs
 $(document).ready(function() {
 	getGifs("");
-});
+})
+
+// use image as button, upload through hidden file input
+function upload() {
+	$("#file").click()
+}
 
 // Run search when user presses enter
 $("#search-bar").keypress(function(e) {
 	if(e.keyCode == 13) {
 		search()
 	}
-});
+})
 
 // update GIFs per user specified search terms, default is trending
 function getGifs(query) {
