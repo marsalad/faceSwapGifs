@@ -10,7 +10,7 @@ $(document).ready(function() {
 // Run search when user presses enter
 $("#search-bar").keypress(function(e) {
 	if(e.keyCode == 13) {
-		search();
+		search()
 	}
 });
 
