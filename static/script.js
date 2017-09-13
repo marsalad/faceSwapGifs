@@ -1,6 +1,6 @@
-var file = ""                            // url of uploaded file
-var gif = ""                             // url of selected GIF
-var htmls = ["","","",""]                // url of displayed GIFs
+var file = ""             // url of uploaded file
+var gif = ""              // url of selected GIF
+var htmls = ["","","",""] // url of displayed GIFs
 
 // On load, display 4 trending GIFs
 $(document).ready(function() {

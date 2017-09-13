@@ -44,13 +44,13 @@ body {
 }
 
 .io-container img, .gif-container img {
-	max-height: 29.95vh;  
-	max-width: 29.95vh; 
-	position: absolute;  
-	top: 0;  
-	bottom: 0;  
-	left: 0;  
-	right: 0;  
+	max-height: 29.95vh;
+	max-width: 29.95vh;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	margin: auto;
 	line-height: 30vh;
 	font-size: 3vh;

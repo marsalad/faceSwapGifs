@@ -7,7 +7,7 @@ giphyKey = os.environ['GIPHY_API_KEY']
 # load HTML
 @app.route('/')
 def home():
-    return render_template('index.html')
+	return render_template('index.html')
 
 # return JSON object with info from 4 GIFs
 @app.route("/searchGifs", methods=["GET", "POST"])
@@ -35,11 +35,11 @@ def swapFaces():
 	with open('img/tmp.gif', 'wb') as f:
 		f.write(requests.get(gif_url).content)
 	uniqueId = str(int(time.time()))
-	os.system('python processGif.py %s %s %s' %("img/tmp.gif", "img/" + img_name, uniqueId))
+	os.system('python processGif.py %s %s %s' 
+		% ("img/tmp.gif", "img/" + img_name, uniqueId))
 	return uniqueId
 
 # intitialize page
 if __name__ == "__main__":
-	debug = True
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)
