@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import os, urllib, json
+import os, json, requests
 
 app = Flask(__name__, static_url_path='')
 giphyKey = os.environ['GIPHY_API_KEY']
@@ -18,10 +18,13 @@ def searchGifs():
 		requestSnippet = "search?q=" + query + "&"
 	else:
 		requestSnippet = "trending?"
-	data = json.loads(urllib.urlopen(
-		"http://api.giphy.com/v1/gifs/%sapi_key=%s&limit=4"
-		% (requestSnippet, giphyKey)).read())
-	return json.dumps(data, sort_keys=True, indent=4)
+	data = requests.get("https://api.giphy.com/v1/gifs/%sapi_key=%s&limit=4"
+		% (requestSnippet, giphyKey)).text
+	data = json.loads(data)
+	htmls = []
+	for i in range(4):
+		htmls.append(data['data'][i]['images']['original']['url'])
+	return json.dumps(htmls)
 
 # swap faces of user-designated GIF and image
 @app.route("/swapFaces", methods=["GET", "POST"])
@@ -37,5 +40,6 @@ def swapFaces():
 
 # intitialize page
 if __name__ == "__main__":
+	debug = True
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)

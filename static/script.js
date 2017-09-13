@@ -23,13 +23,11 @@ function getGifs(query) {
 		data: JSON.stringify({ query: query }),
 		processData: false,
 		success: function(data) {
-			json = JSON.parse(data).data;
-			for (i = 0; i < json.length; i++) {
-				link = json[i].images.original.url
+			htmls = JSON.parse(data)
+			for (i = 0; i < htmls.length; i++) {
 				document.getElementById(
 					"search-results").children[i].innerHTML =
-					"<img src='" + link + "' onclick='selectGif(this)'>";
-				htmls[i] = link
+					"<img src='" + htmls[i] + "' onclick='selectGif(this)'>";
 			}
 		}
 	});
