@@ -1,4 +1,3 @@
-var file = ""             // url of uploaded file
 var gif = ""              // url of selected GIF
 var htmls = ["","","",""] // url of displayed GIFs
 
@@ -12,9 +11,61 @@ function upload() {
 	$("#file").click()
 }
 
+// begin file upload when user selects image
+(function() {
+	document.getElementById("file").onchange = function(){
+		var files = document.getElementById("file").files;
+		var file = files[0];
+		if (!file) {
+			return alert("No file selected.");
+		}
+		getSignedRequest(file);
+	};
+})();
+
+// retrieve an appropriate signed request for file upload
+function getSignedRequest(file){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				var response = JSON.parse(xhr.responseText);
+				uploadFile(file, response.data, response.url);
+			} else {
+				alert("Could not get signed URL.");
+			}
+		}
+	};
+	xhr.send();
+}
+
+// upload the file to s3
+function uploadFile(file, s3Data, url){
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", s3Data.url);
+
+	var postData = new FormData();
+	for (key in s3Data.fields) {
+		postData.append(key, s3Data.fields[key]);
+	}
+	postData.append('file', file);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4){
+			if (xhr.status === 200 || xhr.status === 204) {
+				document.getElementById("input-img").children[0].src = url;
+			} else {
+				alert("Could not upload file.");
+			}
+		}
+	};
+	xhr.send(postData);
+}
+
 // Run search when user presses enter
 $("#search-bar").keypress(function(e) {
-	if(e.keyCode == 13) {
+	if (e.keyCode == 13) {
 		search()
 	}
 })
@@ -49,23 +100,6 @@ function search() {
 function selectGif(caller) {
 	gif = htmls[caller.parentNode.id.substring(4,5)-1];
 	document.getElementById("input-gif").children[0].src = gif;
-}
-
-// Update preview of uploaded image
-function previewFile() {
-	var preview = document.getElementById("preview");
-	file = document.querySelector('input[type=file]').files[0];
-	var reader = new FileReader();
-	
-	reader.onloadend = function () {
-		preview.src = reader.result;
-	}
-
-	if (file) {
-		reader.readAsDataURL(file);
-	} else {
-		preview.src = "";
-	}
 }
 
 // Interface with Python scripts to return faceswapped GIF
