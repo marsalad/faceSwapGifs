@@ -57,12 +57,12 @@ def sign_s3():
 def swapFaces():
 	response = request.get_json(cache=False)
 	gif_url = response['gif']
-	img_name = response['img']
+	img_url = response['img']
 	with open('img/tmp.gif', 'wb') as f:
 		f.write(requests.get(gif_url).content)
 	uniqueId = str(int(time.time()))
 	os.system('python processGif.py %s %s %s' 
-		% ('img/tmp.gif', 'img/' + img_name, uniqueId))
+		% ('img/tmp.gif', 'img/' + img_url, uniqueId))
 	return uniqueId
 
 # intitialize page

@@ -1,6 +1,3 @@
-var gif = ""              // url of selected GIF
-var htmls = ["","","",""] // url of displayed GIFs
-
 // On load, display 4 trending GIFs
 $(document).ready(function() {
 	getGifs("");
@@ -79,11 +76,10 @@ function getGifs(query) {
 		data: JSON.stringify({ query: query }),
 		processData: false,
 		success: function(data) {
-			htmls = JSON.parse(data)
+			var htmls = JSON.parse(data)
 			for (i = 0; i < htmls.length; i++) {
 				document.getElementById(
-					"search-results").children[i].innerHTML =
-					"<img src='" + htmls[i] + "' onclick='selectGif(this)'>";
+					"search-results").children[i].children[0].src = htmls[i];
 			}
 		}
 	});
@@ -98,8 +94,7 @@ function search() {
 
 // User selects the GIF to faceswap
 function selectGif(caller) {
-	gif = htmls[caller.parentNode.id.substring(4,5)-1];
-	document.getElementById("input-gif").children[0].src = gif;
+	document.getElementById("input-gif").children[0].src = caller.src;
 }
 
 // Interface with Python scripts to return faceswapped GIF
@@ -108,7 +103,10 @@ function swapFaces() {
 		type: "POST",
 		url: "/swapFaces",
 		contentType:"application/json; charset=utf-8",
-		data: JSON.stringify({ gif: gif, img: file.name }),
+		data: JSON.stringify({
+			gif: document.getElementById("input-gif").children[0].src, 
+			img: document.getElementById("input-img").children[0].src
+		}),
 		processData: false,
 		success: function(data) {
 			window.open("img/" + data + ".gif", "_blank");
