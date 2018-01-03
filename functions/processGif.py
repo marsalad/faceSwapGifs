@@ -1,5 +1,5 @@
-from faceswap import *
-import os, imageio, shutil
+from faceSwap import *
+import os, imageio, shutil, sys
 from PIL import Image
 
 # get face landmarks
@@ -33,8 +33,7 @@ for frame in range(frameNum):
 		warped_face = warp_im(face, M, im1.shape)
 		warped_corrected_face = correct_colours(im1, warped_face, landmarks1)
 
-		output_im = im1 * (1.0 - combined_mask) 
-					+ warped_corrected_face * combined_mask
+		output_im = im1 * (1.0 - combined_mask) + warped_corrected_face * combined_mask
 
 		cv2.imwrite('swap/%s.jpg' % frame, output_im)
 	except:
@@ -45,4 +44,3 @@ for frame in range(frameNum):
     frames.append(imageio.imread('swap/%s.jpg' % frame))
 imageio.mimsave('img/' + sys.argv[3] + '.gif', frames, fps=20)
 shutil.rmtree('swap')
-os.remove('img/tmp.gif')

@@ -22,7 +22,7 @@ import cv2
 import dlib
 import numpy
 
-PREDICTOR_PATH = 'assets/shape_predictor_68_face_landmarks.dat'
+PREDICTOR_PATH = 'shape_predictor_68_face_landmarks.dat'
 SCALE_FACTOR = 1 
 FEATHER_AMOUNT = 11
 
