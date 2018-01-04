@@ -1,55 +1,30 @@
 // use image as button, upload through hidden file input
-function upload() {
-	$("#file").click()
+function uploadSelfie() {
+  $("#selfie").click()
 }
 
-// begin file upload when user selects image
+// upload and display image when user selects file
 (function() {
-	document.getElementById("file").onchange = function(){
-		var file = document.getElementById("file").files[0];
-		if (!file) {
-			return alert("No file selected.");
-		}
-		getSignedRequest(file);
-	};
+  document.getElementById("selfie").onchange = function() {
+    var selfie = document.getElementById("selfie").files[0];
+    if (selfie) {
+      var element = document.getElementById("input-img").children[0];
+      element.src = "img/spinner.gif";
+      var task = firebase.storage().ref("img/" + selfie.name).put(selfie);
+      task.on("state_changed", 
+        function progress(snapshot) {
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        },
+        function error(e) {
+          window.alert(e.code + " error");
+          element.src = "";
+        },
+        function complete() {
+          var imgUrl = task.snapshot.downloadURL;
+          element.src = imgUrl;
+        }
+      )
+    }
+  };
 })();
-
-// retrieve an appropriate signed request for file upload
-function getSignedRequest(file){
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
-	xhr.onreadystatechange = function(){
-		if (xhr.readyState === 4) {
-			if (xhr.status === 200) {
-				var response = JSON.parse(xhr.responseText);
-				uploadFile(file, response.data, response.url);
-			} else {
-				alert("Could not get signed URL.");
-			}
-		}
-	};
-	xhr.send();
-}
-
-// upload the file to s3
-function uploadFile(file, s3Data, url){
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", s3Data.url);
-
-	var postData = new FormData();
-	for (key in s3Data.fields) {
-		postData.append(key, s3Data.fields[key]);
-	}
-	postData.append('file', file);
-
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4){
-			if (xhr.status === 200 || xhr.status === 204) {
-				document.getElementById("input-img").children[0].src = url;
-			} else {
-				alert("Could not upload file.");
-			}
-		}
-	};
-	xhr.send(postData);
-}

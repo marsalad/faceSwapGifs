@@ -16,8 +16,8 @@
 				</div>
 				<div class="math-symbol">+</div>
 				<div class="io-container" id="input-img">
-					<img src="" alt="Upload a Selfie" onclick="upload()">
-					<input type="file" id="file" style="display:none">
+					<img src="" alt="Upload a Selfie" onclick="uploadSelfie()">
+					<input type="file" id="selfie" style="display:none">
 				</div>
 				<div class="math-symbol">=</div>
 				<div class="io-container" id="output-gif" onclick="swapFaces()">
@@ -27,7 +27,7 @@
 			<div class="search-bar">
 				<input type="text" id="search-bar" placeholder="Search GIFs...">
 				<div class="search-btn" onclick="search()"><i class="fa fa-search"></i></div>
-				<img id="giphy" src="giphy.png">
+				<img id="giphy" src="img/giphy.png">
 			</div>
 			<div id="search-results">
 				<div class="gif-container" id="gif-1"><img src="" onclick="selectGif(this)"></div>
@@ -36,6 +36,8 @@
 				<div class="gif-container" id="gif-4"><img src="" onclick="selectGif(this)"></div>
 			</div>
 		</div>
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script src="js/initializeFirebase.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="js/gifs.js"></script>
 		<script src="js/uploads.js"></script>
