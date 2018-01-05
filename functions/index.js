@@ -8,11 +8,11 @@ admin.initializeApp(functions.config().firebase);
 const cors = require('cors')({ origin: true });
 
 exports.queryGiphy = functions.https.onRequest((req, res) => {
-  cors(req, res, () => {
-    var xhr = $.get('https://api.giphy.com/v1/gifs/' + req.query.query 
-      + 'api_key=' + functions.config().giphy.key + '&limit=' + req.query.num);
-    xhr.done(function(data) {
-      res.status(200).send({data.data});
-    });
-  });
+	cors(req, res, () => {
+		var xhr = $.get('https://api.giphy.com/v1/gifs/' + req.query.query 
+			+ 'api_key=' + functions.config().giphy.key + '&limit=' + req.query.num);
+		xhr.done(function(data) {
+			res.status(200).send({data.data});
+		});
+	});
 });
