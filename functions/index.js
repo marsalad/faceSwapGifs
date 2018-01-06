@@ -14,20 +14,20 @@ const cors = require('cors')({ origin: true });
 
 // query GIPHY for trending or general search
 exports.queryGiphy = functions.https.onRequest((req, res) => {
-	cors(req, res, () => {
-		var query = req.query.query;
-		var limit = req.query.limit;
+  cors(req, res, () => {
+    var query = req.query.query;
+    var limit = req.query.limit;
 
-		if (query) {
-			client.search('gifs', {'q': query, 'limit': limit})
-				.then((response) => {
-					res.status(200).send(response.data);
-				})
-		} else {
-			client.trending('gifs', {'limit': limit})
-				.then((response) => {
-					res.status(200).send(response.data);
-				})
-		}
-	});
+    if (query) {
+      client.search('gifs', {'q': query, 'limit': limit})
+        .then((response) => {
+          res.status(200).send(response.data);
+        })
+    } else {
+      client.trending('gifs', {'limit': limit})
+        .then((response) => {
+          res.status(200).send(response.data);
+        })
+    }
+  });
 });

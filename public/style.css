@@ -3,27 +3,27 @@
 /**********************/
 
 * {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-	background-color: black;
-	font-family: 'Roboto', sans-serif;
+  background-color: black;
+  font-family: 'Roboto', sans-serif;
 }
 
 #wrapper {
-	text-align: center;
-	width: 125vh;
-	margin: auto;
+  text-align: center;
+  width: 125vh;
+  margin: auto;
 }
 
 .title {
-	font-family: 'Bungee Shade', cursive;
-	color: white;
-	font-size: 8vh;
-	line-height: 8vh;
-	margin: 3vh;
+  font-family: 'Bungee Shade', cursive;
+  color: white;
+  font-size: 8vh;
+  line-height: 8vh;
+  margin: 3vh;
 }
 
 /*********************/
@@ -31,49 +31,49 @@ body {
 /*********************/
 
 .io-section {
-	height: 30vh;
-	width: 121vh;
-	margin: 6vh auto;
+  height: 30vh;
+  width: 121vh;
+  margin: 6vh auto;
 }
 
 .io-container, .gif-container {
-	width: 30vh;
-	height: 30vh;
-	float: left;
-	position: relative;
+  width: 30vh;
+  height: 30vh;
+  float: left;
+  position: relative;
 }
 
 .io-container img, .gif-container img {
-	max-height: 29.95vh;
-	max-width: 29.95vh;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	line-height: 30vh;
-	font-size: 3vh;
-	color: white;
+  max-height: 29.95vh;
+  max-width: 29.95vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  line-height: 30vh;
+  font-size: 3vh;
+  color: white;
 }
 
 .io-container {
-	border: 0.5vh solid white;
-	border-radius: 0.5vh;
+  border: 0.5vh solid white;
+  border-radius: 0.5vh;
 }
 
 #input-img img:hover, #output-gif img:hover, .fa:hover {
-	cursor: pointer;
-	color: gray;
+  cursor: pointer;
+  color: gray;
 }
 
 .math-symbol {
-	margin: 0vh 4.5vh;
-	line-height: 30vh;
-	font-size: 5vh;
-	width: 5vh;
-	float: left;
-	color: white;
+  margin: 0vh 4.5vh;
+  line-height: 30vh;
+  font-size: 5vh;
+  width: 5vh;
+  float: left;
+  color: white;
 }
 
 /*********************/
@@ -81,44 +81,44 @@ body {
 /*********************/
 
 .search-bar {
-	position: relative;
-	margin: auto;
-	width: 70vh;
-	height: 9vh;
+  position: relative;
+  margin: auto;
+  width: 70vh;
+  height: 9vh;
 }
 
 .search-bar input {
-	width: 68vh;
-	padding: 0.7vh;
-	padding-left: 1vh;
-	line-height: 3vh;
-	font-size: 3vh;
+  width: 68vh;
+  padding: 0.7vh;
+  padding-left: 1vh;
+  line-height: 3vh;
+  font-size: 3vh;
 }
 
 .search-btn {
-	position: absolute;
-	top: 0px;
-	right: 1.4vh;
-	font-size: 2.5vh;
-	line-height: 5vh;
+  position: absolute;
+  top: 0px;
+  right: 1.4vh;
+  font-size: 2.5vh;
+  line-height: 5vh;
 }
 
 #giphy {
-	height: 2.5vh;
-	margin-left: 0.5vh;
-	margin-top: 0.75vh;
-	float: left;
+  height: 2.5vh;
+  margin-left: 0.5vh;
+  margin-top: 0.75vh;
+  float: left;
 }
 
 #search-results {
-	height: 30vh;
-	margin: 2vh 0vh;
+  height: 30vh;
+  margin: 2vh 0vh;
 }
 
 .gif-container {
-	margin: 0.5vh;
+  margin: 0.5vh;
 }
 
 .gif-container img {
-	cursor: pointer;
+  cursor: pointer;
 }

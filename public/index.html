@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Roboto" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<meta charset="UTF-8">
-		<title>FaceSwap GIFs</title>
-	</head>
-	<body>
-		<div id="wrapper">
-			<div class="title">FaceSwap GIFs</div>
-			<div class="io-section">
-				<div class="io-container" id="input-gif">
-					<img src="" alt="Select a GIF Below">
-				</div>
-				<div class="math-symbol">+</div>
-				<div class="io-container" id="input-img">
-					<img src="" alt="Upload a Selfie" onclick="uploadSelfie()">
-					<input type="file" id="selfie" style="display:none">
-				</div>
-				<div class="math-symbol">=</div>
-				<div class="io-container" id="output-gif" onclick="swapFaces()">
-					<img src="" alt="FaceSwap!">
-				</div>
-			</div>
-			<div class="search-bar">
-				<input type="text" id="search-bar" placeholder="Search GIFs...">
-				<div class="search-btn" onclick="search()"><i class="fa fa-search"></i></div>
-				<img id="giphy" src="img/giphy.png">
-			</div>
-			<div id="search-results">
-				<div class="gif-container" id="gif-1"><img src="" onclick="selectGif(this)"></div>
-				<div class="gif-container" id="gif-2"><img src="" onclick="selectGif(this)"></div>
-				<div class="gif-container" id="gif-3"><img src="" onclick="selectGif(this)"></div>
-				<div class="gif-container" id="gif-4"><img src="" onclick="selectGif(this)"></div>
-			</div>
-		</div>
-		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-storage.js"></script>
-		<script>
-			firebase.initializeApp({
-				apiKey: "AIzaSyDp-FT-Bufv0jKR1WiGqhCg-Jkdh7RVCMM",
-				authDomain: "faceswapgifs.firebaseapp.com",
-				databaseURL: "https://faceswapgifs.firebaseio.com",
-				projectId: "faceswapgifs",
-				storageBucket: "faceswapgifs.appspot.com",
-				messagingSenderId: "813682175895"
-			});
-		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="js/gifs.js"></script>
-		<script src="js/uploads.js"></script>
-	</body>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <title>FaceSwap GIFs</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="title">FaceSwap GIFs</div>
+      <div class="io-section">
+        <div class="io-container" id="input-gif">
+          <img src="" alt="Select a GIF Below">
+        </div>
+        <div class="math-symbol">+</div>
+        <div class="io-container" id="input-img">
+          <img src="" alt="Upload a Selfie" onclick="uploadSelfie()">
+          <input type="file" id="selfie" style="display:none">
+        </div>
+        <div class="math-symbol">=</div>
+        <div class="io-container" id="output-gif" onclick="swapFaces()">
+          <img src="" alt="FaceSwap!">
+        </div>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="search-bar" placeholder="Search GIFs...">
+        <div class="search-btn" onclick="search()"><i class="fa fa-search"></i></div>
+        <img id="giphy" src="img/giphy.png">
+      </div>
+      <div id="search-results">
+        <div class="gif-container" id="gif-1"><img src="" onclick="selectGif(this)"></div>
+        <div class="gif-container" id="gif-2"><img src="" onclick="selectGif(this)"></div>
+        <div class="gif-container" id="gif-3"><img src="" onclick="selectGif(this)"></div>
+        <div class="gif-container" id="gif-4"><img src="" onclick="selectGif(this)"></div>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-storage.js"></script>
+    <script>
+      firebase.initializeApp({
+        apiKey: "AIzaSyDp-FT-Bufv0jKR1WiGqhCg-Jkdh7RVCMM",
+        authDomain: "faceswapgifs.firebaseapp.com",
+        databaseURL: "https://faceswapgifs.firebaseio.com",
+        projectId: "faceswapgifs",
+        storageBucket: "faceswapgifs.appspot.com",
+        messagingSenderId: "813682175895"
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/gifs.js"></script>
+    <script src="js/uploads.js"></script>
+  </body>
 </html>
