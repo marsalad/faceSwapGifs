@@ -1,5 +1,3 @@
-const limit = 4; // number of GIFs to display
-
 // on load, display 4 trending GIFs
 $(document).ready(function() {
   getGifs('');
