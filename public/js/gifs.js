@@ -1,16 +1,37 @@
 const limit = 4; // number of GIFs to display
 
-// On load, display 4 trending GIFs
+// on load, display 4 trending GIFs
 $(document).ready(function() {
   getGifs('');
 })
 
-// Run search when user presses enter
+// run search when user presses enter
 $('#search-bar').keypress(function(e) {
   if (e.keyCode == 13) {
     search();
   }
 })
+
+// change the background image of an html element
+function setImg(element, img) {
+  element.style.backgroundImage = 'url(' + img + ')';
+}
+
+// get the background image of an html element
+function getImg(element) {
+  var style = element.currentStyle || window.getComputedStyle(element, false);
+  return style.backgroundImage.slice(4, -1);
+}
+
+// pull top 4 GIFs based on search terms
+function search() {
+  getGifs(document.getElementById('search-bar').value.replace(/\s/g, '+'));
+}
+
+// user selects the GIF to faceswap
+function selectGif(caller) {
+  setImg(document.getElementById('input-gif'), getImg(caller));
+}
 
 // update GIFs per user specified search terms, default is trending
 function getGifs(query) {
@@ -23,50 +44,10 @@ function getGifs(query) {
       limit: limit
     },
     success: function(data) {
+      var gifs = document.getElementById('search-results').children;
       for (var i = 0; i < limit; i++) {
-        document.getElementById('search-results').children[i].children[0].src = 
-          data[i].images.downsized_medium.gif_url;
+        setImg(gifs[i], data[i].images.downsized_medium.gif_url);
       }
-    }
-  });
-}
-
-// Pull top 4 GIFs based on search terms
-function search() {
-  getGifs(document.getElementById('search-bar').value.replace(/\s/g, '+'));
-}
-
-// User selects the GIF to faceswap
-function selectGif(caller) {
-  document.getElementById('input-gif').children[0].src = caller.src;
-}
-
-// create and display face-swapped GIF
-function swapFaces() {
-  if (!document.getElementById('input-gif')) {
-    alert('Please select a GIF.');
-    return;
-  } else if (!document.getElementById('input-img')) {
-    alert('Please upload an image.');
-    return;
-  }
-
-  var swap = document.getElementById('output-gif').children[0];
-  swap.src = 'img/spinner.gif';
-  $.ajax({
-    url: 'https://us-central1-faceswapgifs.cloudfunctions.net/swapFaces',
-    type: 'POST',
-    contentType:'application/json; charset=utf-8',
-    data: JSON.stringify({
-      gif: document.getElementById('input-gif').children[0].src, 
-      img: document.getElementById('input-img').children[0].src
-    }),
-    success: function(data) {
-      swap.src = data;
-    },
-    error: function() {
-      alert('Error: could not swap faces');
-      swap.src = '';
     }
   });
 }

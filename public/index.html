@@ -11,18 +11,13 @@
     <div id="wrapper">
       <div class="title">FaceSwap GIFs</div>
       <div class="io-section">
-        <div class="io-container" id="input-gif">
-          <img src="" alt="Select a GIF Below">
-        </div>
+        <div class="io-container" id="input-gif"></div>
         <div class="math-symbol">+</div>
-        <div class="io-container" id="input-img">
-          <img src="" alt="Upload a Selfie" onclick="uploadSelfie()">
+        <div class="io-container" id="input-img" onclick="uploadSelfie()">
           <input type="file" id="selfie" style="display:none">
         </div>
         <div class="math-symbol">=</div>
-        <div class="io-container" id="output-gif" onclick="swapFaces()">
-          <img src="" alt="FaceSwap!">
-        </div>
+        <div class="io-container" id="output-gif" onclick="swapFaces()"></div>
       </div>
       <div class="search-bar">
         <input type="text" id="search-bar" placeholder="Search GIFs...">
@@ -30,10 +25,10 @@
         <img id="giphy" src="img/giphy.png">
       </div>
       <div id="search-results">
-        <div class="gif-container" id="gif-1"><img src="" onclick="selectGif(this)"></div>
-        <div class="gif-container" id="gif-2"><img src="" onclick="selectGif(this)"></div>
-        <div class="gif-container" id="gif-3"><img src="" onclick="selectGif(this)"></div>
-        <div class="gif-container" id="gif-4"><img src="" onclick="selectGif(this)"></div>
+        <div class="gif-container" onclick="selectGif(this)"></div>
+        <div class="gif-container" onclick="selectGif(this)"></div>
+        <div class="gif-container" onclick="selectGif(this)"></div>
+        <div class="gif-container" onclick="selectGif(this)"></div>
       </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>

@@ -41,30 +41,14 @@ body {
   height: 30vh;
   float: left;
   position: relative;
-}
-
-.io-container img, .gif-container img {
-  max-height: 29.95vh;
-  max-width: 29.95vh;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  line-height: 30vh;
-  font-size: 3vh;
-  color: white;
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: contain;
 }
 
 .io-container {
   border: 0.5vh solid white;
   border-radius: 0.5vh;
-}
-
-#input-img img:hover, #output-gif img:hover, .fa:hover {
-  cursor: pointer;
-  color: gray;
 }
 
 .math-symbol {
@@ -103,6 +87,11 @@ body {
   line-height: 5vh;
 }
 
+.search-btn:hover {
+  cursor: pointer;
+  color: gray;
+}
+
 #giphy {
   height: 2.5vh;
   margin-left: 0.5vh;
@@ -117,8 +106,5 @@ body {
 
 .gif-container {
   margin: 0.5vh;
-}
-
-.gif-container img {
   cursor: pointer;
 }
