@@ -20,14 +20,14 @@ exports.queryGiphy = functions.https.onRequest((req, res) => {
 
 		if (query) {
 			client.search('gifs', {'q': query, 'limit': limit})
-			  .then((response) => {
-			    res.status(200).send(response.data);
-			  })
+				.then((response) => {
+					res.status(200).send(response.data);
+				})
 		} else {
 			client.trending('gifs', {'limit': limit})
 				.then((response) => {
 					res.status(200).send(response.data);
-			  })
+				})
 		}
 	});
 });
