@@ -1,3 +1,5 @@
+const limit = 4;
+
 // On load, display 4 trending GIFs
 $(document).ready(function() {
 	getGifs('');
@@ -18,13 +20,13 @@ function getGifs(query) {
 		contentType: 'application/json',
 		data: {
 			query: query,
-			limit: 4
+			limit: limit
 		},
 		success: function(data) {
-			console.log(data);
-		},
-		error: function(error) {
-			console.log(error);
+			for (var i = 0; i < limit; i++) {
+				document.getElementById("search-results").children[i].children[0].src = 
+					data[i].images.downsized_medium.gif_url;
+			}
 		}
 	});
 }

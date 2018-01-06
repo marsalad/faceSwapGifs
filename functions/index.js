@@ -5,21 +5,29 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
+// The GIPHY SDK
+const giphy = require('giphy-js-sdk-core');
+const client = giphy(functions.config().giphy.key);
+
+// CORS to avoid header errors
 const cors = require('cors')({ origin: true });
 
+// query GIPHY for trending or general search
 exports.queryGiphy = functions.https.onRequest((req, res) => {
 	cors(req, res, () => {
-		if (req.query.query) {
-			var snippet = 'search?q=' + req.query.query + '&';
+		var query = req.query.query;
+		var limit = req.query.limit;
+
+		if (query) {
+			client.search('gifs', {'q': query, 'limit': limit})
+			  .then((response) => {
+			    res.status(200).send(response.data);
+			  })
 		} else {
-			var snippet = 'trending?';
+			client.trending('gifs', {'limit': limit})
+				.then((response) => {
+					res.status(200).send(response.data);
+			  })
 		}
-		var url = 'https://api.giphy.com/v1/gifs/' + snippet + 'api_key=' 
-			+ functions.config().giphy.key + '&limit=' + req.query.limit;
-		
-		res.status(200).send({ url: url });
 	});
 });
-
-// https://us-central1-faceswapgifs.cloudfunctions.net/queryGiphy ? query=trending%3F&count=4
-// https://api.giphy.com/v1/gifs/trending ? api_key=htJyEZnds2pWeTHxvTcruxdxDBox356V&limit=4
