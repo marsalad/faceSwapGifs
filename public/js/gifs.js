@@ -6,25 +6,19 @@ $(document).ready(function() {
 // Run search when user presses enter
 $('#search-bar').keypress(function(e) {
 	if (e.keyCode == 13) {
-		search()
+		search();
 	}
 })
 
 // update GIFs per user specified search terms, default is trending
 function getGifs(query) {
-	if(query) {
-		requestSnippet = 'search?q=' + query + '&'
-	} else {
-		requestSnippet = 'trending?'
-	}
-
 	$.ajax({
 		url: 'https://us-central1-faceswapgifs.cloudfunctions.net/queryGiphy',
 		type: 'GET',
 		contentType: 'application/json',
 		data: {
-			query: requestSnippet,
-			num: 4
+			query: query,
+			limit: 4
 		},
 		success: function(data) {
 			console.log(data);
