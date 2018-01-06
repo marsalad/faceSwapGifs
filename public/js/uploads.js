@@ -13,16 +13,16 @@ function uploadSelfie() {
       var task = firebase.storage().ref('img/' + selfie.name).put(selfie);
       task.on('state_changed', 
         function progress(snapshot) {
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-        },
-        function error(e) {
-          alert('Error: could not upload file');
-          element.src = '';
+          var prog = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + prog + '% done');
         },
         function complete() {
           var imgUrl = task.snapshot.downloadURL;
           element.src = imgUrl;
+        },
+        function error() {
+          alert('Error: could not upload file');
+          element.src = '';
         }
       )
     }

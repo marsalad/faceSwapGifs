@@ -17,7 +17,7 @@ function getGifs(query) {
   $.ajax({
     url: 'https://us-central1-faceswapgifs.cloudfunctions.net/queryGiphy',
     type: 'GET',
-    contentType: 'application/json',
+    contentType: 'application/json; charset=utf-8',
     data: {
       query: query,
       limit: limit
@@ -41,21 +41,32 @@ function selectGif(caller) {
   document.getElementById('input-gif').children[0].src = caller.src;
 }
 
-// Interface with Python scripts to return faceswapped GIF
+// create and display face-swapped GIF
 function swapFaces() {
-  document.getElementById('output-gif').children[0].src = 
-    'https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif';
+  if (!document.getElementById('input-gif')) {
+    alert('Please select a GIF.');
+    return;
+  } else if (!document.getElementById('input-img')) {
+    alert('Please upload an image.');
+    return;
+  }
+
+  var swap = document.getElementById('output-gif').children[0];
+  swap.src = 'img/spinner.gif';
   $.ajax({
+    url: 'https://us-central1-faceswapgifs.cloudfunctions.net/swapFaces',
     type: 'POST',
-    url: '/swapFaces',
     contentType:'application/json; charset=utf-8',
     data: JSON.stringify({
       gif: document.getElementById('input-gif').children[0].src, 
       img: document.getElementById('input-img').children[0].src
     }),
-    processData: false,
     success: function(data) {
-      document.getElementById('output-gif').children[0].src = data;
+      swap.src = data;
+    },
+    error: function() {
+      alert('Error: could not swap faces');
+      swap.src = '';
     }
   });
 }

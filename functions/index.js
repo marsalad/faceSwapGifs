@@ -31,3 +31,10 @@ exports.queryGiphy = functions.https.onRequest((req, res) => {
     }
   });
 });
+
+// run python script to swap faces in uploaded image and selected GIF
+exports.swapFaces = functions.https.onRequest((req, res) => {
+  cors(req, res, () => {
+    res.status(200).send();
+  });
+});
